@@ -1,6 +1,14 @@
-'use strict'
-var React = require('react')
-var reactDom = require('react-dom') 
-var Hello = require('./Hello')
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux'
+import contact from './reducers/contactReducer';
+import App from './app';
 
-reactDom.render(<Hello />, document.getElementById('content'))
+let store = createStore(contact);
+
+render(<Provider store={store}>
+       <App/>
+       </Provider>,
+         
+document.getElementById('content'));
