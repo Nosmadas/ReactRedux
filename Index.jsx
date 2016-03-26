@@ -1,14 +1,26 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux'
-import contact from './reducers/contactReducer';
+import { createStore, compose  } from 'redux'
+import contacts from './reducers/contactsReducer';
 import App from './app';
+import DevTools from './devTools';
 
-let store = createStore(contact);
+const enhancer = compose(
+    // Required! Enable Redux DevTools with the monitors you chose
+    DevTools.instrument()
+);
 
-render(<Provider store={store}>
-       <App/>
-       </Provider>,
-         
-document.getElementById('content'));
+let store = createStore(contacts, [], enhancer);
+
+const renderApp = () => {
+    render(<Provider store={store}>
+        <div>
+            <App/>
+            <DevTools />
+        </div>
+    </Provider>, document.getElementById('content'));
+};
+
+store.subscribe(renderApp);
+renderApp();
