@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Contacts from '../component/contacts'
-import { addContact } from '../actions/'
+import { deleteContact } from '../actions/'
 
 const mapStateToProps = (state) => {
     return {
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onContactClick: (id) => dispatch(addContact(id))
+        onContactClick: (id) => dispatch(deleteContact(id))
     }
 }
 

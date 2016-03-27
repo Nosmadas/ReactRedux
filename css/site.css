@@ -1,0 +1,12 @@
+i {
+    padding: 5px 10px 5px 10px;
+}
+
+body * {
+    font-family: raleway
+}
+
+i.fa.fa-trash:hover {
+    color: darkred;
+    transition: color .2s ease-in;
+}
