@@ -1,17 +1,16 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, compose  } from 'redux'
+import { createStore, compose, applyMiddleware  } from 'redux'
 import contacts from './reducers/contactsReducer';
-import App from './app';
-import DevTools from './devTools';
+import App from './component/app';
+import DevTools from './devtools/devTools';
+import createLogger from 'redux-logger';
 
-const enhancer = compose(
-    // Required! Enable Redux DevTools with the monitors you chose
-    DevTools.instrument()
-);
-
-let store = createStore(contacts, [], enhancer);
+const logger = createLogger();
+const enhancer = compose(applyMiddleware(logger), DevTools.instrument());
+const initialState = { contacts: [] }
+const store = createStore(contacts, initialState, enhancer);
 
 const renderApp = () => {
     render(<Provider store={store}>

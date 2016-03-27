@@ -4,7 +4,7 @@ const contact = (state, action) => {
         case 'ADD_CONTACT' : {
             return { 
                 id: action.id,
-                name: action.name
+                text: action.text
             }
         };
         default: return state;
